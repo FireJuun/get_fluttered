@@ -14,14 +14,14 @@ class MyApp extends StatelessWidget {
           centerTitle: true,
           title: Text('Get Fluttered'),
         ),
-        body: GetX<CounterController>(
+        body: GetBuilder<CounterController>(
           init: CounterController(),
           builder: (controller) {
             return Center(
               child: Row(
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: [
-                  ...controller.rxCounterList
+                  ...controller.model.counterList
                       .map((e) => CountingColumn(item: e)),
                 ],
               ),
@@ -34,28 +34,25 @@ class MyApp extends StatelessWidget {
 }
 
 class CountingColumn extends StatelessWidget {
-  final RxInt item;
+  final Counter item;
   const CountingColumn({Key key, @required this.item}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
-    final CounterController controller = Get.find();
-    return Obx(
-      () => Column(
-        mainAxisAlignment: MainAxisAlignment.center,
-        children: [
-          FloatingActionButton(
-              child: Icon(Icons.add),
-              onPressed: () => controller.countUp(item)),
-          Text(
-            item.value.toString(),
-            style: TextStyle(fontSize: 48),
-          ),
-          FloatingActionButton(
-              child: Icon(Icons.remove),
-              onPressed: () => controller.countDown(item))
-        ],
-      ),
+    return Column(
+      mainAxisAlignment: MainAxisAlignment.center,
+      children: [
+        FloatingActionButton(
+            child: Icon(Icons.add),
+            onPressed: () => CountUpCommand().execute(item)),
+        Text(
+          item.counter.toString(),
+          style: TextStyle(fontSize: 48),
+        ),
+        FloatingActionButton(
+            child: Icon(Icons.remove),
+            onPressed: () => CountDownCommand().execute(item))
+      ],
     );
   }
 }
@@ -63,9 +60,37 @@ class CountingColumn extends StatelessWidget {
 class CounterController extends GetxController {
   static CounterController get to => Get.find();
 
-  List<RxInt> rxCounterList = [0.obs, 0.obs, 0.obs];
-  // RxInt rxCounter = 0.obs;
+  CounterModel model = CounterModel();
+}
 
-  void countUp(RxInt item) => item.value++;
-  void countDown(RxInt item) => item.value--;
+class CounterModel {
+  List<Counter> counterList = [
+    Counter(),
+    Counter(counter: 3),
+    Counter(counter: 7),
+  ];
+}
+
+class Counter {
+  int counter;
+
+  Counter({this.counter = 0});
+}
+
+abstract class AbstractCommand {
+  CounterController get controller => Get.find();
+}
+
+class CountUpCommand extends AbstractCommand {
+  Future<void> execute(Counter item) async {
+    item.counter++;
+    controller.update();
+  }
+}
+
+class CountDownCommand extends AbstractCommand {
+  Future<void> execute(Counter item) async {
+    item.counter--;
+    controller.update();
+  }
 }
