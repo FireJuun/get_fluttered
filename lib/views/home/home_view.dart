@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:get_fluttered/controllers/commands/commands.dart';
 import 'package:get_fluttered/controllers/counter_controller.dart';
 
 import 'counting_column.dart';
@@ -27,6 +28,19 @@ class HomeView extends StatelessWidget {
             ),
           );
         },
+      ),
+      floatingActionButton: Row(
+        mainAxisSize: MainAxisSize.min,
+        children: [
+          FloatingActionButton(
+            child: Icon(Icons.exposure_minus_1),
+            onPressed: () => RemoveCounterCommand().execute(),
+          ),
+          FloatingActionButton(
+            child: Icon(Icons.plus_one),
+            onPressed: () => AddCounterCommand().execute(),
+          ),
+        ],
       ),
     );
   }
