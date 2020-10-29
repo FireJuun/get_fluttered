@@ -21,9 +21,8 @@ class MyApp extends StatelessWidget {
               child: Row(
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: [
-                  CountingColumn(),
-                  CountingColumn(),
-                  CountingColumn(),
+                  ...controller.rxCounterList
+                      .map((e) => CountingColumn(item: e)),
                 ],
               ),
             );
@@ -35,23 +34,28 @@ class MyApp extends StatelessWidget {
 }
 
 class CountingColumn extends StatelessWidget {
-  const CountingColumn({Key key}) : super(key: key);
+  final RxInt item;
+  const CountingColumn({Key key, @required this.item}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
     final CounterController controller = Get.find();
-    return Column(
-      mainAxisAlignment: MainAxisAlignment.center,
-      children: [
-        FloatingActionButton(
-            child: Icon(Icons.add), onPressed: () => controller.rxCounter++),
-        Text(
-          controller.rxCounter.value.toString(),
-          style: TextStyle(fontSize: 48),
-        ),
-        FloatingActionButton(
-            child: Icon(Icons.remove), onPressed: () => controller.rxCounter--)
-      ],
+    return Obx(
+      () => Column(
+        mainAxisAlignment: MainAxisAlignment.center,
+        children: [
+          FloatingActionButton(
+              child: Icon(Icons.add),
+              onPressed: () => controller.countUp(item)),
+          Text(
+            item.value.toString(),
+            style: TextStyle(fontSize: 48),
+          ),
+          FloatingActionButton(
+              child: Icon(Icons.remove),
+              onPressed: () => controller.countDown(item))
+        ],
+      ),
     );
   }
 }
@@ -59,5 +63,9 @@ class CountingColumn extends StatelessWidget {
 class CounterController extends GetxController {
   static CounterController get to => Get.find();
 
-  RxInt rxCounter = 0.obs;
+  List<RxInt> rxCounterList = [0.obs, 0.obs, 0.obs];
+  // RxInt rxCounter = 0.obs;
+
+  void countUp(RxInt item) => item.value++;
+  void countDown(RxInt item) => item.value--;
 }
