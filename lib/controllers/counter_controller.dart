@@ -4,5 +4,6 @@ import 'package:get_fluttered/models/counter_model.dart';
 class CounterController extends GetxController {
   static CounterController get to => Get.find();
 
-  CounterModel model = CounterModel();
+  final CounterModel _model = CounterModel();
+  CounterModel get model => _model;
 }
