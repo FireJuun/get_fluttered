@@ -75,4 +75,3 @@ Join us [on Discord].
 [on Discord]: https://discord.gg/HQPsVrz
 [PRAPARE app]: https://github.com/firejuun/prapare
 [simple]: https://github.com/gskinnerTeam/flutter-mvcs-hello-world
-[wireframes]: https://www.figma.com/file/cWKc5iTzhoddhxMov05rWG/PRAPARE?node-id=0%3A1
