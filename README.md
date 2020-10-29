@@ -1,4 +1,4 @@
-# get_fluttered
+# Get Fluttered
 
 <img align="right" src="demo.gif" width="280"/>
 
