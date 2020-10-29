@@ -39,21 +39,21 @@ class CountingColumn extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Column(
-      mainAxisAlignment: MainAxisAlignment.center,
-      children: [
-        FloatingActionButton(
-            child: Icon(Icons.add),
-            onPressed: () => CountUpCommand().execute(item)),
-        Text(
-          item.counter.toString(),
-          style: TextStyle(fontSize: 48),
-        ),
-        FloatingActionButton(
-            child: Icon(Icons.remove),
-            onPressed: () => CountDownCommand().execute(item))
-      ],
-    );
+    return Obx(() => Column(
+          mainAxisAlignment: MainAxisAlignment.center,
+          children: [
+            FloatingActionButton(
+                child: Icon(Icons.add),
+                onPressed: () => CountUpCommand().execute(item)),
+            Text(
+              item.counter.toString(),
+              style: TextStyle(fontSize: 48),
+            ),
+            FloatingActionButton(
+                child: Icon(Icons.remove),
+                onPressed: () => CountDownCommand().execute(item))
+          ],
+        ));
   }
 }
 
@@ -66,15 +66,15 @@ class CounterController extends GetxController {
 class CounterModel {
   List<Counter> counterList = [
     Counter(),
-    Counter(counter: 3),
-    Counter(counter: 7),
+    Counter(counter: 3.obs),
+    Counter(counter: 7.obs),
   ];
 }
 
 class Counter {
-  int counter;
+  RxInt counter;
 
-  Counter({this.counter = 0});
+  Counter({RxInt counter}) : this.counter = counter ?? 0.obs;
 }
 
 abstract class AbstractCommand {
@@ -83,14 +83,14 @@ abstract class AbstractCommand {
 
 class CountUpCommand extends AbstractCommand {
   Future<void> execute(Counter item) async {
-    item.counter++;
-    controller.update();
+    item.counter.value++;
+    // controller.update();
   }
 }
 
 class CountDownCommand extends AbstractCommand {
   Future<void> execute(Counter item) async {
-    item.counter--;
-    controller.update();
+    item.counter.value--;
+    // controller.update();
   }
 }
