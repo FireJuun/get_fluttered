@@ -10,4 +10,13 @@ class CounterModel {
 
   List<Counter> get counterList => _counterList;
   // set counterList(value) => _counterList = value;
+
+  void addCounter([int value]) =>
+      _counterList.add(Counter(counter: value?.obs));
+
+  void removeCounter([Counter counter]) {
+    (counter == null)
+        ? _counterList.removeLast()
+        : _counterList.removeWhere((e) => e == counter);
+  }
 }
