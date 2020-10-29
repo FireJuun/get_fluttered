@@ -18,19 +18,12 @@ class MyApp extends StatelessWidget {
           init: CounterController(),
           builder: (controller) {
             return Center(
-              child: Column(
+              child: Row(
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: [
-                  FloatingActionButton(
-                      child: Icon(Icons.add),
-                      onPressed: () => controller.rxCounter++),
-                  Text(
-                    controller.rxCounter.value.toString(),
-                    style: TextStyle(fontSize: 48),
-                  ),
-                  FloatingActionButton(
-                      child: Icon(Icons.remove),
-                      onPressed: () => controller.rxCounter--)
+                  CountingColumn(),
+                  CountingColumn(),
+                  CountingColumn(),
                 ],
               ),
             );
@@ -41,6 +34,30 @@ class MyApp extends StatelessWidget {
   }
 }
 
+class CountingColumn extends StatelessWidget {
+  const CountingColumn({Key key}) : super(key: key);
+
+  @override
+  Widget build(BuildContext context) {
+    final CounterController controller = Get.find();
+    return Column(
+      mainAxisAlignment: MainAxisAlignment.center,
+      children: [
+        FloatingActionButton(
+            child: Icon(Icons.add), onPressed: () => controller.rxCounter++),
+        Text(
+          controller.rxCounter.value.toString(),
+          style: TextStyle(fontSize: 48),
+        ),
+        FloatingActionButton(
+            child: Icon(Icons.remove), onPressed: () => controller.rxCounter--)
+      ],
+    );
+  }
+}
+
 class CounterController extends GetxController {
+  static CounterController get to => Get.find();
+
   RxInt rxCounter = 0.obs;
 }
