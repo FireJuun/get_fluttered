@@ -1,4 +1,8 @@
-part of 'counter_model.dart';
+import 'package:freezed_annotation/freezed_annotation.dart';
+
+import 'data/counter.dart';
+
+part 'counter_event.freezed.dart';
 
 @freezed
 abstract class CounterEvent implements _$CounterEvent {
