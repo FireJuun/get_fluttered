@@ -2,7 +2,7 @@
 
 <img align="right" src="demo.gif" width="280"/>
 
-A Flutter project linked to a YouTube channel. Designed to teach various components used in Flutter health initiatives (e.g. within the [PRAPARE app]).
+A Flutter project linked to a [YouTube playlist]. Designed to teach various components used in Flutter health initiatives (e.g. within the [PRAPARE app]).
 
 ## Architecture
 
@@ -87,3 +87,4 @@ Join us [on Slack].
 [on Slack]: https://bit.ly/flutterjuun-slack
 [PRAPARE app]: https://github.com/firejuun/prapare
 [simple]: https://github.com/gskinnerTeam/flutter-mvcs-hello-world
+[Youtube playlist]: https://www.youtube.com/playlist?list=PL_e311Xg2aCQX98onj3OZ2XAE5vm8fCI1
