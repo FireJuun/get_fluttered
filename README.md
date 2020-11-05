@@ -9,13 +9,13 @@ A Flutter project linked to a YouTube channel. Designed to teach various compone
 This app loosely follows the [Model-View-Controller+Services] `(MVC+S) architecture`, which has both [simple] and [production-level] examples of use. Whereas the above examples make heavy use of Provider, ChangeNotifier, and StatefulWidgets, we are instead using [Get] and some of the [Getx pattern] to simplify state management, routing, and dependency injection.
 
 Our take on MVC+S is as follows:
-<img align="left" src="getMVCS.png" width="280"/>
 
 - `model`: Class/objects created specifically for this app
 - `views`: The UI layer, which is separated into multiple `pages` and may optionally be managed via a `viewcontroller`
 - `controller`: Manages state of the model and resultant data. Controller classes typically extend `GetxController` (automatically disposed) and `GetxService` (rarely/never disposed)
 - `service`: Connects your app with the outside world (e.g. internet or local file system).
 - `command`: A high level function that performs a specific task, such as login/logout. It may utilize controllers, APIs, models, etc as necessary.
+<img align="center" src="getMVCS.png" width="450"/>
 
 ## Folder Structure
 
