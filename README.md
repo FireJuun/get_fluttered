@@ -2,7 +2,7 @@
 
 <img align="right" src="demo.gif" width="280"/>
 
-A Flutter project linked to a [YouTube playlist]. Designed to teach various components used in Flutter health initiatives (e.g. within the [PRAPARE app]).
+A Flutter project linked to a [YouTube playlist]. Designed to teach various components used in Flutter health initiatives (e.g. within the [PRAPARE app]). When relevant, videos may also have a supplemental [blog post].
 
 ## Architecture
 
@@ -78,15 +78,15 @@ For VS Code, install the Dart and Flutter plugin. Set your editor to [format on 
 
 ## Questions
 
-First, check the supplemental [GetFluttered blog post] and similar posts. That blog post also has an invite to the Flutter Juun Slack, which you are welcome to join. We're happy to answer questions in the Slack or on the relevant video in the GetFluttered [Youtube playlist].
+First, check the supplemental [blog post] and similar posts. That blog post also has an invite to the Flutter Juun Slack, which you are welcome to join. We're happy to answer questions in the Slack or on the relevant video in the GetFluttered [Youtube playlist].
 
-[production-level]: https://github.com/gskinnerTeam/flokk
+[blog post]: https://mayjuun.com/blog/2-get-fluttered-mvcs
 [Dart style guide]: https://dart.dev/guides/language/effective-dart/style
 [format on save]: https://flutter.dev/docs/development/tools/formatting#automatically-formatting-code-in-vs-code
 [Get]: https://pub.dev/packages/get#the-three-pillars
 [Getx pattern]: https://github.com/kauemurakami/getx_pattern
 [Model-View-Controller+Services]: https://blog.gskinner.com/archives/2020/09/flutter-state-management-with-mvcs.html
-[GetFluttered blog post]: https://mayjuun.com/blog/2-get-fluttered-mvcs
 [PRAPARE app]: https://github.com/firejuun/prapare
 [simple]: https://github.com/gskinnerTeam/flutter-mvcs-hello-world
+[production-level]: https://github.com/gskinnerTeam/flokk
 [Youtube playlist]: https://www.youtube.com/playlist?list=PL_e311Xg2aCQX98onj3OZ2XAE5vm8fCI1
